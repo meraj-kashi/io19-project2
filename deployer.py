@@ -52,6 +52,9 @@ def swarm_deploy():
 
 
 vm_deploy()
+
+time.sleep(30)
+
 swarm_deploy()
 
 
