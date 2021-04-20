@@ -25,7 +25,7 @@ def handle_error():
         for i in rebuild_list:
             subprocess.run('nova delete ' + i + '.projectx', shell=True)
             time.sleep(10)
-            subprocess.run('mln start -p projectx -h ' + i, shell=True)
+            subprocess.run('sudo mln start -p projectx -h ' + i, shell=True)
             time.sleep(20)
         rebuild_list = []
         
@@ -35,7 +35,7 @@ def vm_deploy():
 
     print('------------- Start Deployment ------------')
     # Build mln project
-    subprocess.run('mln build -f projectx.mln -r', shell=True)
+    subprocess.run('sudo mln build -f projectx.mln -r', shell=True)
     time.sleep(30)
 
     # Start deployment infra with MLN
