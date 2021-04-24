@@ -44,10 +44,12 @@ def vm_deploy():
 
     handle_error()
 
-def swarm_deploy():
+def infra_services_deploy():
     print('------------- Start Swarm Deployment ------------')
-    subprocess.run('chmode +x ./swarm.sh', shell=True)
-    subprocess.run('./swarm.sh', shell=True)
+    subprocess.run('chmode +x ./services.sh', shell=True)
+    subprocess.run('./services.sh', shell=True)
+
+
 
 
 

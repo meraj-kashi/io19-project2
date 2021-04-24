@@ -1,0 +1,15 @@
+sudo apt-get update -y 
+sudo apt-get install python-software-properties -y
+sudo add-apt-repository ppa:gluster/glusterfs-3.10 -y
+sudo apt-get update -y
+sudo apt-get install -y glusterfs-server attr
+sudo cp /etc/init.d/glusterfs-server /etc/systemd/system/
+sudo systemctl enable glusterfs-server
+sudo systemctl start glusterfs-server
+sudo gluster peer probe swarm1; sudo gluster peer probe swarm2; sudo gluster peer probe swarm3 #only master
+sudo gluster volume create swarm-gfs replica 3 swarm1:/gluster/brick swarm2:/gluster/brick swarm3:/gluster/brick #only master
+sudo gluster volume start swarm-gfs
+echo 'localhost:/swarm-gfs /mnt glusterfs defaults,_netdev,backupvolfile-server=localhost 0 0' | sudo tee -a /etc/fstab
+sudo mount.glusterfs localhost:/swarm-gfs /mnt
+sudo chown -R root:docker /mnt
+
