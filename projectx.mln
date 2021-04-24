@@ -33,13 +33,14 @@ superclass common {
 			sudo cp /etc/init.d/glusterfs-server /etc/systemd/system/
 			sudo systemctl enable glusterfs-server
 			sudo systemctl start glusterfs-server
+			sudo mkdir -p /gluster/brick
 
 
    
         }
 		image Ubuntu16.04
 		flavor m1.medium
-		keypair master-swarm
+		keypair swarm-key
 	}
 
 	network eth0 {
