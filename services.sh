@@ -48,6 +48,10 @@ ssh -o StrictHostKeyChecking=no ubuntu@$worker_node2_ip sudo chown -R root:docke
 #Deploy services to the Swarm
 ssh -o StrictHostKeyChecking=no ubuntu@$master_ip git clone https://github.com/meraj-kashi/io19-project2-microservices.git
 
+# User Notification
+echo "Please run below command to login swarm-1"
+echo "ssh ubuntu@$master_ip"
+
 
 
 
