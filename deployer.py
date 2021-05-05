@@ -13,7 +13,7 @@ def handle_error():
     while error:
         failed = os.popen('nova list | grep "ERROR"')
         error_list = failed.read()
-        error_array = re.findall(" [a-zA-Z0-9]*.projectx", error_list)
+        error_array = re.findall("[a-zA-Z0-9]*.projectx", error_list)
 
         if error_array:
             for i in error_array:
@@ -58,7 +58,3 @@ vm_deploy()
 time.sleep(60)
 
 infra_services_deploy()
-
-
-
-
