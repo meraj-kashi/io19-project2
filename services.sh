@@ -28,19 +28,19 @@ ssh -o StrictHostKeyChecking=no ubuntu@$master_ip sudo gluster peer probe swarm1
 ssh -o StrictHostKeyChecking=no ubuntu@$master_ip sudo gluster peer probe swarm2
 ssh -o StrictHostKeyChecking=no ubuntu@$master_ip sudo gluster peer probe swarm3
 ssh -o StrictHostKeyChecking=no ubuntu@$master_ip sudo gluster volume create swarm-gfs replica 3 swarm1:/gluster/brick swarm2:/gluster/brick swarm3:/gluster/brick force
-ssh -o StrictHostKeyChecking=no ubuntu@$master_ip sudo gluster volume start swarm-gfs
+ssh -o StrictHostKeyChecking=no ubuntu@$master_ip sudo gluster volume start swarm-gfs || true
 ssh -o StrictHostKeyChecking=no ubuntu@$master_ip echo 'localhost:/swarm-gfs /mnt glusterfs defaults,_netdev,backupvolfile-server=localhost 0 0 | sudo tee -a /etc/fstab'
 ssh -o StrictHostKeyChecking=no ubuntu@$master_ip sudo mount.glusterfs localhost:/swarm-gfs /mnt
 ssh -o StrictHostKeyChecking=no ubuntu@$master_ip sudo chown -R root:docker /mnt
 
 #Setup GlusterFs on worker Node 1
-ssh -o StrictHostKeyChecking=no ubuntu@$worker_node1_ip sudo gluster volume start swarm-gfs
+ssh -o StrictHostKeyChecking=no ubuntu@$worker_node1_ip sudo gluster volume start swarm-gfs || true
 ssh -o StrictHostKeyChecking=no ubuntu@$worker_node1_ip echo 'localhost:/swarm-gfs /mnt glusterfs defaults,_netdev,backupvolfile-server=localhost 0 0 | sudo tee -a /etc/fstab'
 ssh -o StrictHostKeyChecking=no ubuntu@$worker_node1_ip sudo mount.glusterfs localhost:/swarm-gfs /mnt
 ssh -o StrictHostKeyChecking=no ubuntu@$worker_node1_ip sudo chown -R root:docker /mnt
 
 #Setup GlusterFs on worker Node 2
-ssh -o StrictHostKeyChecking=no ubuntu@$worker_node2_ip sudo gluster volume start swarm-gfs
+ssh -o StrictHostKeyChecking=no ubuntu@$worker_node2_ip sudo gluster volume start swarm-gfs || true
 ssh -o StrictHostKeyChecking=no ubuntu@$worker_node2_ip echo 'localhost:/swarm-gfs /mnt glusterfs defaults,_netdev,backupvolfile-server=localhost 0 0 | sudo tee -a /etc/fstab'
 ssh -o StrictHostKeyChecking=no ubuntu@$worker_node2_ip sudo mount.glusterfs localhost:/swarm-gfs /mnt
 ssh -o StrictHostKeyChecking=no ubuntu@$worker_node2_ip sudo chown -R root:docker /mnt
