@@ -55,8 +55,10 @@ def infra_services_deploy():
 
 vm_deploy()
 
-time.sleep(30)
+time.sleep(60)
 
-swarm_deploy()
+infra_services_deploy()
+
+
 
 
